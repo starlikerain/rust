@@ -1,57 +1,19 @@
-// use ferris_says::say;
-// use std::io::{stdout, BufWriter};
-//
-// fn main(){
-//     let stdout = stdout();
-//     let message = String::from("Hello fellow Rustaceans!\
-//     我");
-//     let width = message.chars().count();
-//
-//     let mut writer = BufWriter::new(stdout.lock());
-//     say(message.as_bytes(), width, &mut writer).unwrap();
-//
-// }
-//
-
-use std::cmp::Ordering;
-// ------------------------分割线------------------------
-use std::io;
-
-// prelude  // trait
-use rand::Rng;
-
 fn main() {
-    let secret_number = rand::thread_rng().gen_range(1, 101);
+    // let tup: (i32, f64, u8) = (500, 6.4, 1);
+    //
+    // println!("{} {} {}", tup.0, tup.1, tup.2);
+    // println!("{}", tup.3);
+    //
+    // let a: [i32; 5] = [1, 2, 3, 4, 5];
 
-    println!("secret_number: {}", secret_number);
 
 
-    loop {
-        println!("Guess a number:");
+    // let x = 5;
 
-        let mut guess = String::new();
+    let y = {
+        let x = 1;
+        x + 4
+    };
 
-        io::stdin().read_line(&mut guess).expect("输入错误");
-
-        // 这个写法虽然捕获了但是也退出（崩溃）了
-        // let guess:u32 = guess.trim().parse().expect("please enter a number");
-
-        // This way is better
-        let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
-            Err(_) => continue,
-        };
-
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small"),
-            Ordering::Greater => println!("Too big"),
-            Ordering::Equal => {
-                println!("You win!!!");
-                break;
-            }
-        }
-    }
+    println!("The y value is {}", y);
 }
-
-
-
