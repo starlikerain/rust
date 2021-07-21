@@ -7,13 +7,21 @@ fn main() {
     // let a: [i32; 5] = [1, 2, 3, 4, 5];
 
 
-
     // let x = 5;
 
-    let y = {
-        let x = 1;
-        x + 4
-    };
+    // let y = {
+    //     let x = 1;
+    //     x + 4
+    // };
+    //
+    // println!("The y value is {}", y);
 
-    println!("The y value is {}", y);
+    let number = 7;
+
+    // 不会做隐式转换，必须用 bool
+    if number < 5 {
+        println!("condition true")
+    } else {
+        println!("condition false")
+    }
 }
