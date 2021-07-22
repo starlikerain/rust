@@ -31,13 +31,31 @@ fn main() {
     //
     // println!("LIFTOFF!")
 
-    let mut s = String::from("我是string2"); // String 类型
-    let mut s2 = "我是s2"; // 字符串字面值
+    /**
+    String 类型 和 字符串字面值
+    */
+    // let mut s = String::from("我是string2"); // String 类型
+    // let mut s2 = "我是s2"; // 字符串字面值
+    //
+    //
+    // s.push_str("尾巴"); // success
+    // s2.push_str("啊"); // method not found in `&str`
+    //
+    // println!("str2 {}", s);
+    // println!("sr {}", s2);
 
 
-    s.push_str("尾巴"); // success
-    s2.push_str("啊"); // method not found in `&str`
+    /**
+    只复制了 stack 的指针，没有复制到 heap 的数据，
+    如果s1退出了 scope，那么会引发 drop，
+    同理 s2 退出 scope 也有同样的问题，会引发二次释放(double free)的 bug
+     */
+    // let s1 = String::from("hello");
+    // let s2 = s1;
 
-    println!("str2 {}", s);
-    println!("sr {}", s2);
+
 }
+
+
+
+
