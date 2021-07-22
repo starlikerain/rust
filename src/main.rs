@@ -54,7 +54,7 @@ fn main() {
      */
     let s1 = String::from("hello"); // move occurs because `s1` has type `String`, which does not implement the `Copy` trait
     let s2 = s1;   // value moved here
-    println!("s1 {}", s1)
+    println!("s1 {}", s1) // value borrowed here after move
 
 }
 
