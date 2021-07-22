@@ -51,10 +51,23 @@ fn main() {
     *同理 s2 退出 scope 也有同样的问题，会引发二次释放(double free)的 bug，
     *结论就是为了避免这个，进行了 move 操作，而不是指针复制
     */
-    let s1 = String::from("hello"); // move occurs because `s1` has type `String`, which does not implement the `Copy` trait
-    // let s2 = s1;   // value moved here
-    let s2 = s1.clone();
-    println!("{} {}", s1, s2) // value borrowed here after move
+    // let s1 = String::from("hello"); // move occurs because `s1` has type `String`, which does not implement the `Copy` trait
+    // // let s2 = s1;   // value moved here
+    // let s2 = s1.clone();
+    // println!("{} {}", s1, s2) // value borrowed here after move
+
+
+    /*
+    *引用和借用
+    */
+    let s1 = String::from("hello");
+    let len = calculate_length(&s1);
+
+    println!("s1.len {}", len);
+}
+
+fn calculate_length(s: &String) -> usize {
+    s.len()
 }
 
 
