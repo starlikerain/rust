@@ -16,12 +16,28 @@ fn main() {
     //
     // println!("The y value is {}", y);
 
-    let number = 7;
+    // let number = 7;
+    //
+    // // 不会做隐式转换，必须用 bool
+    // if number < 5 {
+    //     println!("condition true")
+    // } else {
+    //     println!("condition false")
+    // }
 
-    // 不会做隐式转换，必须用 bool
-    if number < 5 {
-        println!("condition true")
-    } else {
-        println!("condition false")
-    }
+    // for number in (1..=4).rev() {
+    //     println!("{}!", number)
+    // }
+    //
+    // println!("LIFTOFF!")
+
+    let mut s = String::from("我是string2"); // String 类型
+    let mut s2 = "我是s2"; // 字符串字面值
+
+
+    s.push_str("尾巴"); // success
+    s2.push_str("啊"); // method not found in `&str`
+
+    println!("str2 {}", s);
+    println!("sr {}", s2);
 }
