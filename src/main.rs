@@ -48,11 +48,13 @@ fn main() {
     /**
     只复制了 stack 的指针，没有复制到 heap 的数据，
     如果s1退出了 scope，那么会引发 drop，
-    同理 s2 退出 scope 也有同样的问题，会引发二次释放(double free)的 bug
-     */
-    // let s1 = String::from("hello");
-    // let s2 = s1;
+    同理 s2 退出 scope 也有同样的问题，会引发二次释放(double free)的 bug，
 
+    结论就是为了避免这个，进行了 move 操作，而不是指针复制
+     */
+    let s1 = String::from("hello"); // move occurs because `s1` has type `String`, which does not implement the `Copy` trait
+    let s2 = s1;   // value moved here
+    println!("s1 {}", s1)
 
 }
 
