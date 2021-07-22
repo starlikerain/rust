@@ -31,9 +31,9 @@ fn main() {
     //
     // println!("LIFTOFF!")
 
-    /**
+    /*
     String 类型 和 字符串字面值
-    */
+     */
     // let mut s = String::from("我是string2"); // String 类型
     // let mut s2 = "我是s2"; // 字符串字面值
     //
@@ -45,17 +45,16 @@ fn main() {
     // println!("sr {}", s2);
 
 
-    /**
-    只复制了 stack 的指针，没有复制到 heap 的数据，
-    如果s1退出了 scope，那么会引发 drop，
-    同理 s2 退出 scope 也有同样的问题，会引发二次释放(double free)的 bug，
-
-    结论就是为了避免这个，进行了 move 操作，而不是指针复制
-     */
+    /*
+    *只复制了 stack 的指针，没有复制到 heap 的数据，
+    *如果s1退出了 scope，那么会引发 drop，
+    *同理 s2 退出 scope 也有同样的问题，会引发二次释放(double free)的 bug，
+    *结论就是为了避免这个，进行了 move 操作，而不是指针复制
+    */
     let s1 = String::from("hello"); // move occurs because `s1` has type `String`, which does not implement the `Copy` trait
-    let s2 = s1;   // value moved here
-    println!("s1 {}", s1) // value borrowed here after move
-
+    // let s2 = s1;   // value moved here
+    let s2 = s1.clone();
+    println!("{} {}", s1, s2) // value borrowed here after move
 }
 
 
