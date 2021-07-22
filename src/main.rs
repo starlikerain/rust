@@ -60,16 +60,37 @@ fn main() {
     /*
     *引用和借用
     */
-    let mut s1 = String::from("hello");
-    let len = calculate_length(&mut s1);
+    // let mut s1 = String::from("hello");
+    // let len = calculate_length(&mut s1);
+    //
+    // println!("s1.len {}", len);
 
-    println!("s1.len {}", len);
+
+    /*
+    *切片
+    */
+    let s = String::from("hello");
+    let word_index = first_word(&s);
+
+    println!("{}", word_index)
 }
 
-fn calculate_length(s: &mut String) -> usize {
-    s.push_str(", world");
+fn first_word(s: &String) -> usize {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i
+        }
+    }
+
     s.len()
 }
+
+// fn calculate_length(s: &mut String) -> usize {
+//     s.push_str(", world");
+//     s.len()
+// }
 
 
 
