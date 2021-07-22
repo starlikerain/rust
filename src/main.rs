@@ -60,13 +60,14 @@ fn main() {
     /*
     *引用和借用
     */
-    let s1 = String::from("hello");
-    let len = calculate_length(&s1);
+    let mut s1 = String::from("hello");
+    let len = calculate_length(&mut s1);
 
     println!("s1.len {}", len);
 }
 
-fn calculate_length(s: &String) -> usize {
+fn calculate_length(s: &mut String) -> usize {
+    s.push_str(", world");
     s.len()
 }
 
