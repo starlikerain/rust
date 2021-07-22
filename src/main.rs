@@ -69,9 +69,10 @@ fn main() {
     /*
     *切片
     */
-    let s = String::from("hello");
+    let mut s = String::from("hello");
     let word_index = first_word(&s);
 
+    s.clear(); // 如果在这里调用，就会导致 word_index 的数据没有意义不准了
     println!("{}", word_index)
 }
 
