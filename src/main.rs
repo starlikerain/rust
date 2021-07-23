@@ -72,20 +72,24 @@ fn main() {
     let mut s = String::from("hello");
     let word_index = first_word(&s);
 
-    s.clear(); // 如果在这里调用，就会导致 word_index 的数据没有意义不准了
+    // s.clear(); // 如果在这里调用，就会导致 word_index 的数据没有意义不准了
+    s.clear(); // mutable borrow occurs here
     println!("{}", word_index)
 }
 
-fn first_word(s: &String) -> usize {
+// 这里比较合理的是返回字符串切片 &str，而不是 usize
+fn first_word(s: &String) -> &str {
     let bytes = s.as_bytes();
 
     for (i, &item) in bytes.iter().enumerate() {
         if item == b' ' {
-            return i
+            // return i
+            return &s[..i]
         }
     }
 
-    s.len()
+    // s.len()
+    &s[..]
 }
 
 // fn calculate_length(s: &mut String) -> usize {
