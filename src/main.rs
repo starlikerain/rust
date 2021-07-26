@@ -1,34 +1,30 @@
 #[derive(Debug)]
-struct Rectangle {
-    width: u32,
-    length: u32,
+enum UsState {
+    Alabama,
+    Alaska,
 }
 
-impl Rectangle {
-    fn area(&self) -> u32 {
-        self.width * self.length
-    }
-    fn can_hold(&self, other: &Rectangle) -> bool {
-        self.width > other.width && self.length > other.length
-    }
-    // 也可以不传 self
-    fn square(size: u32) -> Rectangle {
-        Rectangle {
-            width: size,
-            length: size,
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState),
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        // 绑定值的模式匹配
+        Coin::Quarter(state) => {
+            println!("SAtate quarter from {:?}!", state);
+            25
         }
     }
 }
 
 fn main() {
-    let s = Rectangle::square(20);
-    let rect = Rectangle {
-        width: 30,
-        length: 50,
-    };
-
-    println!("{}", rect.area());
-
-    println!("{:?}", rect)
+    let c = Coin::Quarter(UsState::Alabama);
+    println!("{}", value_in_cents(c))
 }
-
