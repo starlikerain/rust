@@ -30,17 +30,33 @@ fn main() {
     let f = File::open("hello.text");
 
     // 用 match 简单实现如果出错的时候创建文件而不是直接简单的 panic
-    let _f = match f {
-        Ok(file) => file,
-        // Err(error) => {
-        //     panic!("Error opening file {:?}", error)
-        // }
-        Err(error) => match error.kind() {
-            ErrorKind::NotFound => match File::create("hello.txt") {
-                Ok(fc) => fc,
-                Err(error) => panic!("Error creating file {:?}", error)
-            },
-            oe => panic!("Error opening the file {:?}", oe)
+    // let _f = match f {
+    //     Ok(file) => file,
+    //     // Err(error) => {
+    //     //     panic!("Error opening file {:?}", error)
+    //     // }
+    //     Err(error) => match error.kind() {
+    //         ErrorKind::NotFound => match File::create("hello.txt") {
+    //             Ok(fc) => fc,
+    //             Err(error) => panic!("Error creating file {:?}", error)
+    //         },
+    //         oe => panic!("Error opening the file {:?}", oe)
+    //     }
+    // };
+
+    let f = File::open("hello.txt").unwrap_or_else(|error| {
+        if error.kind() == ErrorKind::NotFound {
+            File::create("hello.txt").unwrap_or_else(|error| {
+                panic!("Error creating file: {:?}", error)
+            })
+        } else {
+            panic!("Error opening file {:?}", error)
         }
-    };
+    });
+
+
+
+
+
+
 }
